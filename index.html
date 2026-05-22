@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echo Bot | The Ultimate Community Engine</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configure our Custom Fiery Theme -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                dark: '#0a0a0f',    // Deep space/void
+                card: '#13131f',    // Dark-blue UI cards
+                crimson: '#dc2626', // Blood red
+                flame: '#ea580c',   // Ember orange
+                glow: '#f97316'     // Vibrant orange glow
+              }
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Load Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-brand-dark text-white font-sans selection:bg-brand-crimson selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="border-b border-white/5 bg-brand-dark/80 backdrop-blur-md fixed w-full z-50 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <i data-lucide="flame" class="w-8 h-8 text-brand-crimson"></i>
+                <span class="text-2xl font-bold tracking-wider">ECHO<span class="text-brand-crimson">BOT</span></span>
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+                <a href="#features" class="hover:text-white transition-colors">Features</a>
+                <a href="#economy" class="hover:text-white transition-colors">Economy</a>
+                <a href="#commands" class="hover:text-white transition-colors">Commands</a>
+            </div>
+            <a href="#" class="bg-brand-card border border-white/10 hover:border-brand-crimson/50 px-6 py-2 rounded-full font-medium transition-all hover:shadow-[0_0_15px_rgba(220,38,38,0.3)]">
+                Support Server
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-40 pb-20 px-6 relative overflow-hidden">
+        <!-- Ambient Glow Effect -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-crimson/10 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-crimson/10 border border-brand-crimson/20 text-brand-glow text-sm font-medium mb-8">
+                <i data-lucide="flame" class="w-4 h-4"></i> Top.gg Approved Masterpiece
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-tight">
+                The Ultimate <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-crimson to-brand-glow">Community Engine.</span>
+            </h1>
+            <p class="text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+                Why use five different bots when you can have one meticulously designed ecosystem? Battle Royales, TCG card collections, mature roleplay, and advanced server moderation.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#" class="bg-brand-crimson hover:bg-brand-crimson/90 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-[0_0_30px_rgba(220,38,38,0.4)] hover:shadow-[0_0_50px_rgba(220,38,38,0.6)] flex items-center justify-center gap-2">
+                    <i data-lucide="terminal" class="w-5 h-5"></i> Invite to Server
+                </a>
+                <a href="#features" class="bg-brand-card hover:bg-white/5 border border-white/10 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all flex items-center justify-center">
+                    Explore Features
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="features" class="py-24 px-6 bg-[#0c0c14] border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6">A Living Ecosystem</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">Everything you need wrapped in a sleek, competitive, and immersive aesthetic.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Card 1 -->
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
+                        <i data-lucide="swords" class="w-8 h-8 text-brand-crimson"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">The Echo Hangrygames</h3>
+                    <p class="text-gray-400 leading-relaxed">High-stakes Battle Royale simulation running 24/7. Stake your flames, fight for survival, and humiliate the losers with targeted exhibition protocols.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
+                        <i data-lucide="shield-alert" class="w-8 h-8 text-brand-flame"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">The Velvetdex TCG</h3>
+                    <p class="text-gray-400 leading-relaxed">Catch your server members as digitized cards. Build your deck across 6 epic rarity tiers and equip Active Pets to boost your combat stats.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
+                        <i data-lucide="coins" class="w-8 h-8 text-yellow-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Deep Economy Engine</h3>
+                    <p class="text-gray-400 leading-relaxed">A ruthless Black Market. Buy combat gear from tiered Dungeon Bags, purchase rings for server-wide marriages, and stack compounding daily streaks.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
+                        <i data-lucide="heart" class="w-8 h-8 text-pink-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Mature Social Dynamics</h3>
+                    <p class="text-gray-400 leading-relaxed">Deep roleplay mechanics. Enter Binding Contracts, choose your Dungeon Class, and track server tension in the Voyeur Gallery.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
+                        <i data-lucide="flame" class="w-8 h-8 text-brand-glow"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Neural Sync Leveling</h3>
+                    <p class="text-gray-400 leading-relaxed">A highly calibrated XP system that tracks your frequency. Unlock global leaderboards, earn Neural Certificates, and dominate the Counting 2.0 system.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
+                        <i data-lucide="terminal" class="w-8 h-8 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Premium Automation</h3>
+                    <p class="text-gray-400 leading-relaxed">Complete server control. Auto-threading, smart ping limits, advanced SFW/NSFW confession routing, and a secure Black Box audit ledger.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-brand-dark py-12 text-center text-gray-500">
+        <p>© 2026 Echo Bot Development. All rights reserved.</p>
+    </footer>
+
+    <!-- Initialize Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
+</body>
+</html>
