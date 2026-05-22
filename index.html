@@ -162,9 +162,16 @@
                         <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Persistent Archive via !velvetdex</li>
                     </ul>
                 </div>
-                <div class="flex-1 w-full flex flex-col gap-8">
-                    <img src="memberscatch.jpg" alt="Velvetdex Interface" class="rounded-xl border border-white/10 shadow-2xl w-full object-cover transform hover:-translate-y-2 transition-transform duration-500">
-                    <img src="memberscatch2.jpg" alt="Velvetdex Secondary Interface" class="rounded-xl border border-white/10 shadow-2xl w-full object-cover transform hover:-translate-y-2 transition-transform duration-500">
+                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+                    <img id="dex-img-1" src="memberscatch.jpg" alt="Velvetdex Interface" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100 z-10">
+                    <img id="dex-img-2" src="memberscatch2.jpg" alt="Velvetdex Secondary Interface" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 z-0">
+                    
+                    <button onclick="toggleDexImage()" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
+                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+                    <button onclick="toggleDexImage()" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </button>
                 </div>
             </div>
 
@@ -230,6 +237,25 @@
 
     <script>
       lucide.createIcons();
+
+      let dexShowingFirst = true;
+      function toggleDexImage() {
+          const img1 = document.getElementById('dex-img-1');
+          const img2 = document.getElementById('dex-img-2');
+          
+          if (dexShowingFirst) {
+              img1.classList.replace('opacity-100', 'opacity-0');
+              img1.classList.replace('z-10', 'z-0');
+              img2.classList.replace('opacity-0', 'opacity-100');
+              img2.classList.replace('z-0', 'z-10');
+          } else {
+              img1.classList.replace('opacity-0', 'opacity-100');
+              img1.classList.replace('z-0', 'z-10');
+              img2.classList.replace('opacity-100', 'opacity-0');
+              img2.classList.replace('z-10', 'z-0');
+          }
+          dexShowingFirst = !dexShowingFirst;
+      }
     </script>
 </body>
 </html>
