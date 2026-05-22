@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Echo Bot | The Ultimate Community Engine</title>
     
-    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Configure our Custom Fiery Theme -->
     <script>
       tailwind.config = {
         theme: {
@@ -27,12 +25,10 @@
       }
     </script>
 
-    <!-- Load Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-brand-dark text-white font-sans selection:bg-brand-crimson selection:text-white">
 
-    <!-- Navigation -->
     <nav class="border-b border-white/5 bg-brand-dark/80 backdrop-blur-md fixed w-full z-50 top-0">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3">
@@ -50,9 +46,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="pt-40 pb-20 px-6 relative overflow-hidden">
-        <!-- Ambient Glow Effect -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-crimson/10 blur-[120px] rounded-full pointer-events-none"></div>
         
         <div class="max-w-4xl mx-auto text-center relative z-10">
@@ -77,7 +71,6 @@
         </div>
     </section>
 
-    <!-- Features Grid -->
     <section id="features" class="py-24 px-6 bg-[#0c0c14] border-t border-white/5">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
@@ -87,7 +80,6 @@
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
-                <!-- Card 1 -->
                 <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
                     <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
                         <i data-lucide="swords" class="w-8 h-8 text-brand-crimson"></i>
@@ -96,7 +88,6 @@
                     <p class="text-gray-400 leading-relaxed">High-stakes Battle Royale simulation running 24/7. Stake your flames, fight for survival, and humiliate the losers with targeted exhibition protocols.</p>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
                     <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
                         <i data-lucide="shield-alert" class="w-8 h-8 text-brand-flame"></i>
@@ -105,7 +96,6 @@
                     <p class="text-gray-400 leading-relaxed">Catch your server members as digitized cards. Build your deck across 6 epic rarity tiers and equip Active Pets to boost your combat stats.</p>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
                     <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
                         <i data-lucide="coins" class="w-8 h-8 text-yellow-500"></i>
@@ -114,7 +104,6 @@
                     <p class="text-gray-400 leading-relaxed">A ruthless Black Market. Buy combat gear from tiered Dungeon Bags, purchase rings for server-wide marriages, and stack compounding daily streaks.</p>
                 </div>
 
-                <!-- Card 4 -->
                 <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
                     <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
                         <i data-lucide="heart" class="w-8 h-8 text-pink-500"></i>
@@ -123,7 +112,6 @@
                     <p class="text-gray-400 leading-relaxed">Deep roleplay mechanics. Enter Binding Contracts, choose your Dungeon Class, and track server tension in the Voyeur Gallery.</p>
                 </div>
 
-                <!-- Card 5 -->
                 <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
                     <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
                         <i data-lucide="flame" class="w-8 h-8 text-brand-glow"></i>
@@ -132,7 +120,6 @@
                     <p class="text-gray-400 leading-relaxed">A highly calibrated XP system that tracks your frequency. Unlock global leaderboards, earn Neural Certificates, and dominate the Counting 2.0 system.</p>
                 </div>
 
-                <!-- Card 6 -->
                 <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
                     <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
                         <i data-lucide="terminal" class="w-8 h-8 text-blue-400"></i>
@@ -145,12 +132,101 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <section id="trailer" class="py-24 px-6 bg-brand-dark border-t border-white/5 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-flame/10 blur-[150px] rounded-full pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">See The Engine in Action</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto text-lg mb-12">Watch the high-stakes Hangrygames and our Velvetdex TCG unfold in real-time.</p>
+            
+            <div class="aspect-video w-full max-w-5xl mx-auto rounded-2xl overflow-hidden border-2 border-brand-crimson/30 shadow-[0_0_40px_rgba(220,38,38,0.2)] bg-brand-card flex items-center justify-center">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Echo Bot Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="showcase" class="py-24 px-6 bg-[#0c0c14] border-t border-white/5">
+        <div class="max-w-7xl mx-auto space-y-32">
+            
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="flex-1 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-flame/10 border border-brand-flame/20 text-brand-flame text-sm font-bold">
+                        <i data-lucide="shield-alert" class="w-4 h-4"></i> Catch 'Em All
+                    </div>
+                    <h3 class="text-4xl font-bold">The Velvetdex Card System</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        Every time your server speaks, a card might spawn. Users can claim these assets, view their highly classified and randomized intel, and equip them as active pets. The UI renders custom imagery directly in Discord.
+                    </p>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> 6 Rarity Tiers (Basic to Supreme)</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Active Pet Stat Boosts</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Persistent Archive via !velvetdex</li>
+                    </ul>
+                </div>
+                <div class="flex-1 w-full">
+                    <img src="https://placehold.co/800x600/13131f/dc2626?text=Upload+Velvetdex+Screenshot+Here" alt="Velvetdex Interface" class="rounded-xl border border-white/10 shadow-2xl w-full object-cover transform hover:scale-105 transition-transform duration-500">
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
+                <div class="flex-1 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-crimson/10 border border-brand-crimson/20 text-brand-crimson text-sm font-bold">
+                        <i data-lucide="swords" class="w-4 h-4"></i> Battle Royale
+                    </div>
+                    <h3 class="text-4xl font-bold">The Echo Hangrygames</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        Step into the Red Room. The bot handles all registrations, simulates the battle using player stats, and outputs a gripping narrative. If you lose in an exhibition match, be prepared to face the consequences.
+                    </p>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> 24/7 Automated Registration Windows</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Multiple Modes (SFW & NSFW)</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Winner's Decree Mechanics</li>
+                    </ul>
+                </div>
+                <div class="flex-1 w-full">
+                    <img src="https://placehold.co/800x600/13131f/dc2626?text=Upload+Hangrygames+Screenshot+Here" alt="Hangrygames Action" class="rounded-xl border border-white/10 shadow-2xl w-full object-cover transform hover:scale-105 transition-transform duration-500">
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="flex-1 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-500 text-sm font-bold">
+                        <i data-lucide="coins" class="w-4 h-4"></i> Wealth & Power
+                    </div>
+                    <h3 class="text-4xl font-bold">The Black Market</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        Flames are your lifeblood. Harvest them daily, buy loot boxes for equipment, and engage in high-stakes social contracts. Will you buy a ring to bind a soul, or invest in gear to survive the Rumble Pit?
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <div class="bg-brand-card p-4 rounded-lg border border-white/5">
+                            <h4 class="font-bold text-white mb-1">Buy Gear</h4>
+                            <p class="text-sm text-gray-500">Tiered Dungeon Bags</p>
+                        </div>
+                        <div class="bg-brand-card p-4 rounded-lg border border-white/5">
+                            <h4 class="font-bold text-white mb-1">Buy Rings</h4>
+                            <p class="text-sm text-gray-500">Server Marriages</p>
+                        </div>
+                        <div class="bg-brand-card p-4 rounded-lg border border-white/5">
+                            <h4 class="font-bold text-white mb-1">Loot & Scrap</h4>
+                            <p class="text-sm text-gray-500">Liquidate Assets</p>
+                        </div>
+                        <div class="bg-brand-card p-4 rounded-lg border border-white/5">
+                            <h4 class="font-bold text-white mb-1">Contracts</h4>
+                            <p class="text-sm text-gray-500">Sub/Dom Taxes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 w-full relative">
+                    <img src="https://placehold.co/800x600/13131f/dc2626?text=Upload+Black+Market+Screenshot+Here" alt="Economy Shop Interface" class="rounded-xl border border-white/10 shadow-2xl w-full object-cover transform hover:scale-105 transition-transform duration-500">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <footer class="border-t border-white/5 bg-brand-dark py-12 text-center text-gray-500">
         <p>© 2026 Echo Bot Development. All rights reserved.</p>
     </footer>
 
-    <!-- Initialize Icons -->
     <script>
       lucide.createIcons();
     </script>
