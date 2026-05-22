@@ -190,8 +190,18 @@
                         <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Winner's Decree Mechanics</li>
                     </ul>
                 </div>
-                <div class="flex-1 w-full">
-                    <img src="https://placehold.co/800x600/13131f/dc2626?text=Upload+Hangrygames+Screenshot+Here" alt="Hangrygames Action" class="rounded-xl border border-white/10 shadow-2xl w-full object-cover transform hover:scale-105 transition-transform duration-500">
+                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
+                    <img id="hg-img-1" src="echogames.jpg" alt="Hangrygames Action 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
+                    <img id="hg-img-2" src="echogames2.jpg" alt="Hangrygames Action 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    <img id="hg-img-3" src="echogames3.jpg" alt="Hangrygames Action 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    <img id="hg-img-4" src="echogames4.jpg" alt="Hangrygames Action 4" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    
+                    <button onclick="changeHgImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
+                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+                    <button onclick="changeHgImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </button>
                 </div>
             </div>
 
@@ -255,6 +265,21 @@
               img2.classList.replace('z-10', 'z-0');
           }
           dexShowingFirst = !dexShowingFirst;
+      }
+
+      let currentHgIndex = 1;
+      const totalHgImages = 4;
+
+      function changeHgImage(step) {
+          document.getElementById('hg-img-' + currentHgIndex).classList.replace('opacity-100', 'opacity-0');
+          document.getElementById('hg-img-' + currentHgIndex).classList.replace('z-10', 'z-0');
+          
+          currentHgIndex += step;
+          if (currentHgIndex > totalHgImages) currentHgIndex = 1;
+          if (currentHgIndex < 1) currentHgIndex = totalHgImages;
+          
+          document.getElementById('hg-img-' + currentHgIndex).classList.replace('opacity-0', 'opacity-100');
+          document.getElementById('hg-img-' + currentHgIndex).classList.replace('z-0', 'z-10');
       }
     </script>
 </body>
