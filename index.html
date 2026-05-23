@@ -320,13 +320,16 @@
                     </ul>
                 </div>
                 <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
-                    <img id="auto-img-1" src="https://placehold.co/800x600/13131f/60a5fa?text=Upload+Automation+Image+1" alt="Automation 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
-                    <img id="auto-img-2" src="https://placehold.co/800x600/13131f/60a5fa?text=Upload+Automation+Image+2" alt="Automation 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    <img id="auto-img-1" src="pre.jpg" alt="Automation 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
+                    <img id="auto-img-2" src="pre2.jpg" alt="Automation 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    <img id="auto-img-3" src="pre3.jpg" alt="Automation 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    <img id="auto-img-4" src="pre4.jpg" alt="Automation 4" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    <img id="auto-img-5" src="pre5.jpg" alt="Automation 5" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     
-                    <button onclick="toggleAutoImage()" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
+                    <button onclick="changeAutoImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
                         <i data-lucide="chevron-left" class="w-6 h-6"></i>
                     </button>
-                    <button onclick="toggleAutoImage()" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
+                    <button onclick="changeAutoImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
                         <i data-lucide="chevron-right" class="w-6 h-6"></i>
                     </button>
                 </div>
@@ -558,6 +561,21 @@
               img2.classList.replace('z-10', 'z-0');
           }
           autoShowingFirst = !autoShowingFirst;
+      }
+
+      let currentAutoIndex = 1;
+      const totalAutoImages = 5;
+
+      function changeAutoImage(step) {
+          document.getElementById('auto-img-' + currentAutoIndex).classList.replace('opacity-100', 'opacity-0');
+          document.getElementById('auto-img-' + currentAutoIndex).classList.replace('z-10', 'z-0');
+          
+          currentAutoIndex += step;
+          if (currentAutoIndex > totalAutoImages) currentAutoIndex = 1;
+          if (currentAutoIndex < 1) currentAutoIndex = totalAutoImages;
+          
+          document.getElementById('auto-img-' + currentAutoIndex).classList.replace('opacity-0', 'opacity-100');
+          document.getElementById('auto-img-' + currentAutoIndex).classList.replace('z-0', 'z-10');
       }
 
       let combatShowingFirst = true;
