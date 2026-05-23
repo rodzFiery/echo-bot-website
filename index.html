@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Echo Bot | The Ultimate Community Engine</title>
@@ -25,9 +23,7 @@
       }
     </script>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body class="bg-brand-dark text-white font-sans selection:bg-brand-crimson selection:text-white">
+    <script src="https://unpkg.com/lucide@latest"></script></head><body class="bg-brand-dark text-white font-sans selection:bg-brand-crimson selection:text-white">
 
     <nav class="border-b border-white/5 bg-brand-dark/80 backdrop-blur-md fixed w-full z-50 top-0">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
@@ -351,13 +347,17 @@
                     </ul>
                 </div>
                 <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
-                    <img id="combat-img-1" src="https://placehold.co/800x600/13131f/ef4444?text=Upload+Combat+Image+1" alt="Combat Interface 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
-                    <img id="combat-img-2" src="https://placehold.co/800x600/13131f/ef4444?text=Upload+Combat+Image+2" alt="Combat Interface 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    <img id="fight-img-1" src="fight.jpg" alt="Combat Interface 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
+                    <img id="fight-img-2" src="fight1.jpg" alt="Combat Interface 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    <img id="fight-img-3" src="fight2.jpg" alt="Combat Interface 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    <img id="fight-img-4" src="fight3.jpg" alt="Combat Interface 4" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    <img id="fight-img-5" src="fight4.jpg" alt="Combat Interface 5" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    <img id="fight-img-6" src="fight5.jpg" alt="Combat Interface 6" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     
-                    <button onclick="toggleCombatImage()" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
+                    <button onclick="changeFightImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
                         <i data-lucide="chevron-left" class="w-6 h-6"></i>
                     </button>
-                    <button onclick="toggleCombatImage()" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
+                    <button onclick="changeFightImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
                         <i data-lucide="chevron-right" class="w-6 h-6"></i>
                     </button>
                 </div>
@@ -578,6 +578,21 @@
           document.getElementById('auto-img-' + currentAutoIndex).classList.replace('z-0', 'z-10');
       }
 
+      let currentFightIndex = 1;
+      const totalFightImages = 6;
+
+      function changeFightImage(step) {
+          document.getElementById('fight-img-' + currentFightIndex).classList.replace('opacity-100', 'opacity-0');
+          document.getElementById('fight-img-' + currentFightIndex).classList.replace('z-10', 'z-0');
+          
+          currentFightIndex += step;
+          if (currentFightIndex > totalFightImages) currentFightIndex = 1;
+          if (currentFightIndex < 1) currentFightIndex = totalFightImages;
+          
+          document.getElementById('fight-img-' + currentFightIndex).classList.replace('opacity-0', 'opacity-100');
+          document.getElementById('fight-img-' + currentFightIndex).classList.replace('z-0', 'z-10');
+      }
+
       let combatShowingFirst = true;
       function toggleCombatImage() {
           const img1 = document.getElementById('combat-img-1');
@@ -672,6 +687,4 @@
           }
           countingShowingFirst = !countingShowingFirst;
       }
-    </script>
-</body>
-</html>
+    </script></body></html>
