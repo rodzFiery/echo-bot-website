@@ -366,16 +366,16 @@
             <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
                 <div class="flex-1 space-y-6">
                     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20 text-fuchsia-500 text-sm font-bold">
-                        <i data-lucide="heart-handshake" class="w-4 h-4"></i> Ask & Consent DM Lobbies
+                        <i data-lucide="ship" class="w-4 h-4"></i> Advanced Matchmaking
                     </div>
-                    <h3 class="text-4xl font-bold">Ask & Consent DM Lobbies</h3>
+                    <h3 class="text-4xl font-bold">Advanced Matchmaking</h3>
                     <p class="text-gray-400 text-lg leading-relaxed">
-                        Maintain absolute privacy and safety. Use our specialized Ask & Consent DM Lobbies to negotiate interactions, ensure mutual agreement, and track boundary settings for all SFW & NSFW activities.
+                        Ship yourself with others for daily compatibility scores, scan for 3-way matches, and explore extensive social dynamics within our intelligent matchmaking framework.
                     </p>
                     <ul class="space-y-4 text-gray-300">
-                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Structured Consent Negotiation</li>
-                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Private DM Interaction Gateways</li>
-                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Automated Boundary Tracking</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Daily Matchmaking & Auto-Scans</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Extensive Interaction Analysis</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Persistent Compatibility Tracking</li>
                     </ul>
                 </div>
                 <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
@@ -389,6 +389,34 @@
                         <i data-lucide="chevron-left" class="w-6 h-6"></i>
                     </button>
                     <button onclick="changeShipImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="flex-1 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20 text-fuchsia-500 text-sm font-bold">
+                        <i data-lucide="heart-handshake" class="w-4 h-4"></i> Ask & Consent DM
+                    </div>
+                    <h3 class="text-4xl font-bold">Ask & Consent DM Lobbies</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        Maintain absolute privacy and safety. Use our specialized Ask & Consent DM Lobbies to negotiate interactions, ensure mutual agreement, and track boundary settings for all SFW & NSFW activities.
+                    </p>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Structured Consent Negotiation</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Private DM Interaction Gateways</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Automated Boundary Tracking</li>
+                    </ul>
+                </div>
+                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
+                    <img id="consent-img-1" src="https://placehold.co/800x600/13131f/d946ef?text=Upload+Consent+Image+1" alt="Consent Interface 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
+                    <img id="consent-img-2" src="https://placehold.co/800x600/13131f/d946ef?text=Upload+Consent+Image+2" alt="Consent Interface 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    
+                    <button onclick="toggleConsentImage()" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
+                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+                    <button onclick="toggleConsentImage()" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
                         <i data-lucide="chevron-right" class="w-6 h-6"></i>
                     </button>
                 </div>
@@ -596,25 +624,6 @@
           document.getElementById('fight-img-' + currentFightIndex).classList.replace('z-0', 'z-10');
       }
 
-      let combatShowingFirst = true;
-      function toggleCombatImage() {
-          const img1 = document.getElementById('combat-img-1');
-          const img2 = document.getElementById('combat-img-2');
-          
-          if (combatShowingFirst) {
-              img1.classList.replace('opacity-100', 'opacity-0');
-              img1.classList.replace('z-10', 'z-0');
-              img2.classList.replace('opacity-0', 'opacity-100');
-              img2.classList.replace('z-0', 'z-10');
-          } else {
-              img1.classList.replace('opacity-0', 'opacity-100');
-              img1.classList.replace('z-0', 'z-10');
-              img2.classList.replace('opacity-100', 'opacity-0');
-              img2.classList.replace('z-10', 'z-0');
-          }
-          combatShowingFirst = !combatShowingFirst;
-      }
-
       let currentShipIndex = 1;
       const totalShipImages = 5;
 
@@ -630,12 +639,12 @@
           document.getElementById('ship-img-' + currentShipIndex).classList.replace('z-0', 'z-10');
       }
 
-      let matchShowingFirst = true;
-      function toggleMatchImage() {
-          const img1 = document.getElementById('match-img-1');
-          const img2 = document.getElementById('match-img-2');
+      let consentShowingFirst = true;
+      function toggleConsentImage() {
+          const img1 = document.getElementById('consent-img-1');
+          const img2 = document.getElementById('consent-img-2');
           
-          if (matchShowingFirst) {
+          if (consentShowingFirst) {
               img1.classList.replace('opacity-100', 'opacity-0');
               img1.classList.replace('z-10', 'z-0');
               img2.classList.replace('opacity-0', 'opacity-100');
@@ -646,7 +655,7 @@
               img2.classList.replace('opacity-100', 'opacity-0');
               img2.classList.replace('z-10', 'z-0');
           }
-          matchShowingFirst = !matchShowingFirst;
+          consentShowingFirst = !consentShowingFirst;
       }
 
       let miniShowingFirst = true;
