@@ -180,7 +180,7 @@
         <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-flame/10 blur-[150px] rounded-full pointer-events-none"></div>
         <div class="max-w-7xl mx-auto text-center relative z-10">
             <h2 class="text-3xl md:text-5xl font-bold mb-6">See The Engine in Action</h2>
-            <p class="text-gray-400 max-w-2xl mx-auto text-lg mb-12">Watch the ticket system and autoroles unfold in real-time.</p>
+            <p class="text-gray-400 max-w-2xl mx-auto text-lg mb-12">Watch the high-stakes Hangrygames and our Velvetdex TCG unfold in real-time.</p>
             
             <div class="aspect-video w-full max-w-5xl mx-auto rounded-2xl overflow-hidden border-2 border-brand-crimson/30 shadow-[0_0_40px_rgba(220,38,38,0.2)] bg-brand-card flex items-center justify-center relative">
                 <video id="feature-video" class="w-full h-full object-cover" controls>
@@ -554,7 +554,8 @@
                     </ul>
                 </div>
                 <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
-                    <img id="ticket-img-1" src="https://placehold.co/800x600/13131f/14b8a6?text=Upload+Ticket+Image" alt="Ticket System" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
+                    <img id="ticket-img-1" src="https://placehold.co/800x600/13131f/14b8a6?text=Upload+Ticket+Image" alt="Ticket System 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
+                    <img id="ticket-img-2" src="ticketdisplay.jpg" alt="Ticket System 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     
                     <button onclick="changeTicketImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
                         <i data-lucide="chevron-left" class="w-6 h-6"></i>
@@ -782,8 +783,16 @@
       }
 
       let currentTicketIndex = 1;
-      const totalTicketImages = 1;
+      const totalTicketImages = 2;
       function changeTicketImage(step) {
-          // Placeholder function for future images
+          document.getElementById('ticket-img-' + currentTicketIndex).classList.replace('opacity-100', 'opacity-0');
+          document.getElementById('ticket-img-' + currentTicketIndex).classList.replace('z-10', 'z-0');
+          
+          currentTicketIndex += step;
+          if (currentTicketIndex > totalTicketImages) currentTicketIndex = 1;
+          if (currentTicketIndex < 1) currentTicketIndex = totalTicketImages;
+          
+          document.getElementById('ticket-img-' + currentTicketIndex).classList.replace('opacity-0', 'opacity-100');
+          document.getElementById('ticket-img-' + currentTicketIndex).classList.replace('z-0', 'z-10');
       }
     </script></body></html>
