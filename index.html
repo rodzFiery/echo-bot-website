@@ -468,13 +468,14 @@
                     </ul>
                 </div>
                 <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
-                    <img id="counting-img-1" src="https://placehold.co/800x600/13131f/f97316?text=Upload+Counting+Image+1" alt="Counting Interface 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
-                    <img id="counting-img-2" src="https://placehold.co/800x600/13131f/f97316?text=Upload+Counting+Image+2" alt="Counting Interface 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    <img id="counting-img-1" src="count.jpg" alt="Counting Interface 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
+                    <img id="counting-img-2" src="count2.jpg" alt="Counting Interface 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    <img id="counting-img-3" src="count3.jpg" alt="Counting Interface 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     
-                    <button onclick="toggleCountingImage()" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
+                    <button onclick="changeCountingImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
                         <i data-lucide="chevron-left" class="w-6 h-6"></i>
                     </button>
-                    <button onclick="toggleCountingImage()" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
+                    <button onclick="changeCountingImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
                         <i data-lucide="chevron-right" class="w-6 h-6"></i>
                     </button>
                 </div>
@@ -709,22 +710,18 @@
           toolsShowingFirst = !toolsShowingFirst;
       }
 
-      let countingShowingFirst = true;
-      function toggleCountingImage() {
-          const img1 = document.getElementById('counting-img-1');
-          const img2 = document.getElementById('counting-img-2');
+      let currentCountingIndex = 1;
+      const totalCountingImages = 3;
+
+      function changeCountingImage(step) {
+          document.getElementById('counting-img-' + currentCountingIndex).classList.replace('opacity-100', 'opacity-0');
+          document.getElementById('counting-img-' + currentCountingIndex).classList.replace('z-10', 'z-0');
           
-          if (countingShowingFirst) {
-              img1.classList.replace('opacity-100', 'opacity-0');
-              img1.classList.replace('z-10', 'z-0');
-              img2.classList.replace('opacity-0', 'opacity-100');
-              img2.classList.replace('z-0', 'z-10');
-          } else {
-              img1.classList.replace('opacity-0', 'opacity-100');
-              img1.classList.replace('z-0', 'z-10');
-              img2.classList.replace('opacity-100', 'opacity-0');
-              img2.classList.replace('z-10', 'z-0');
-          }
-          countingShowingFirst = !countingShowingFirst;
+          currentCountingIndex += step;
+          if (currentCountingIndex > totalCountingImages) currentCountingIndex = 1;
+          if (currentCountingIndex < 1) currentCountingIndex = totalCountingImages;
+          
+          document.getElementById('counting-img-' + currentCountingIndex).classList.replace('opacity-0', 'opacity-100');
+          document.getElementById('counting-img-' + currentCountingIndex).classList.replace('z-0', 'z-10');
       }
     </script></body></html>
