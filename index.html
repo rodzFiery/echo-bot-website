@@ -410,13 +410,14 @@
                     </ul>
                 </div>
                 <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
-                    <img id="consent-img-1" src="https://placehold.co/800x600/13131f/d946ef?text=Upload+Consent+Image+1" alt="Consent Interface 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
-                    <img id="consent-img-2" src="https://placehold.co/800x600/13131f/d946ef?text=Upload+Consent+Image+2" alt="Consent Interface 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    <img id="ask-img-1" src="ask.jpg" alt="Ask Interface 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
+                    <img id="ask-img-2" src="ask2.jpg" alt="Ask Interface 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
+                    <img id="ask-img-3" src="ask3.jpg" alt="Ask Interface 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     
-                    <button onclick="toggleConsentImage()" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
+                    <button onclick="changeAskImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
                         <i data-lucide="chevron-left" class="w-6 h-6"></i>
                     </button>
-                    <button onclick="toggleConsentImage()" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
+                    <button onclick="changeAskImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
                         <i data-lucide="chevron-right" class="w-6 h-6"></i>
                     </button>
                 </div>
@@ -639,23 +640,19 @@
           document.getElementById('ship-img-' + currentShipIndex).classList.replace('z-0', 'z-10');
       }
 
-      let consentShowingFirst = true;
-      function toggleConsentImage() {
-          const img1 = document.getElementById('consent-img-1');
-          const img2 = document.getElementById('consent-img-2');
+      let currentAskIndex = 1;
+      const totalAskImages = 3;
+
+      function changeAskImage(step) {
+          document.getElementById('ask-img-' + currentAskIndex).classList.replace('opacity-100', 'opacity-0');
+          document.getElementById('ask-img-' + currentAskIndex).classList.replace('z-10', 'z-0');
           
-          if (consentShowingFirst) {
-              img1.classList.replace('opacity-100', 'opacity-0');
-              img1.classList.replace('z-10', 'z-0');
-              img2.classList.replace('opacity-0', 'opacity-100');
-              img2.classList.replace('z-0', 'z-10');
-          } else {
-              img1.classList.replace('opacity-0', 'opacity-100');
-              img1.classList.replace('z-0', 'z-10');
-              img2.classList.replace('opacity-100', 'opacity-0');
-              img2.classList.replace('z-10', 'z-0');
-          }
-          consentShowingFirst = !consentShowingFirst;
+          currentAskIndex += step;
+          if (currentAskIndex > totalAskImages) currentAskIndex = 1;
+          if (currentAskIndex < 1) currentAskIndex = totalAskImages;
+          
+          document.getElementById('ask-img-' + currentAskIndex).classList.replace('opacity-0', 'opacity-100');
+          document.getElementById('ask-img-' + currentAskIndex).classList.replace('z-0', 'z-10');
       }
 
       let miniShowingFirst = true;
