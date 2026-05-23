@@ -17,13 +17,29 @@
                 flame: '#ea580c',   // Ember orange
                 glow: '#f97316'     // Vibrant orange glow
               }
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'float-delayed': 'float 6s ease-in-out 3s infinite',
+              'pulse-glow': 'pulseGlow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-12px)' },
+              },
+              pulseGlow: {
+                '0%, 100%': { opacity: 0.4 },
+                '50%': { opacity: 0.9 },
+              }
             }
           }
         }
       }
     </script>
 
-    <script src="https://unpkg.com/lucide@latest"></script></head><body class="bg-brand-dark text-white font-sans selection:bg-brand-crimson selection:text-white">
+    <script src="https://unpkg.com/lucide@latest"></script></head><body class="bg-brand-dark text-white font-sans selection:bg-brand-crimson selection:text-white relative z-0">
+    <canvas id="particle-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-[-1] opacity-70"></canvas>
 
     <nav class="border-b border-white/5 bg-brand-dark/80 backdrop-blur-md fixed w-full z-50 top-0">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
@@ -45,8 +61,8 @@
     <section class="pt-40 pb-20 px-6 relative overflow-hidden">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-crimson/10 blur-[120px] rounded-full pointer-events-none"></div>
         
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-crimson/10 border border-brand-crimson/20 text-brand-glow text-sm font-medium mb-8">
+        <div class="max-w-4xl mx-auto text-center relative z-10 animate-float">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-crimson/10 border border-brand-crimson/20 text-brand-glow text-sm font-medium mb-8 backdrop-blur-xl">
                 <i data-lucide="flame" class="w-4 h-4"></i> Top.gg Approved Masterpiece
             </div>
             <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-tight">
@@ -60,14 +76,14 @@
                 <a href="https://discord.com/oauth2/authorize?client_id=1458419817756495934&scope=bot%20applications.commands&permissions=0" class="bg-brand-crimson hover:bg-brand-crimson/90 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-[0_0_30px_rgba(220,38,38,0.4)] hover:shadow-[0_0_50px_rgba(220,38,38,0.6)] flex items-center justify-center gap-2">
                     <i data-lucide="terminal" class="w-5 h-5"></i> Invite to Server
                 </a>
-                <a href="#features" class="bg-brand-card hover:bg-white/5 border border-white/10 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all flex items-center justify-center">
+                <a href="#features" class="bg-brand-card hover:bg-white/5 border border-white/10 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all flex items-center justify-center backdrop-blur-xl bg-opacity-60">
                     Explore Features
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="features" class="py-24 px-6 bg-[#0c0c14] border-t border-white/5">
+    <section id="features" class="py-24 px-6 bg-brand-dark/40 border-t border-white/5 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-5xl font-bold mb-6">A Living Ecosystem</h2>
@@ -76,113 +92,149 @@
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
-                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
-                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
-                        <i data-lucide="swords" class="w-8 h-8 text-brand-crimson"></i>
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-all duration-500 group relative z-10 animate-float backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-r from-brand-crimson via-brand-glow to-brand-crimson opacity-0 group-hover:opacity-100 blur-sm animate-pulse-glow rounded-xl z-[-1] transition-all duration-500 pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-brand-card/70 backdrop-blur-md rounded-xl z-[-1] pointer-events-none"></div>
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg relative">
+                        <div class="absolute inset-0 bg-brand-crimson/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <i data-lucide="swords" class="w-8 h-8 text-brand-crimson relative z-10"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">The Echo Hangrygames</h3>
-                    <p class="text-gray-400 leading-relaxed">High-stakes Battle Royale simulation running 24/7. Stake your flames, fight for survival, and humiliate the losers with targeted exhibition protocols.</p>
+                    <h3 class="text-xl font-bold mb-4 relative z-10">The Echo Hangrygames</h3>
+                    <p class="text-gray-400 leading-relaxed relative z-10">High-stakes Battle Royale simulation running 24/7. Stake your flames, fight for survival, and humiliate the losers with targeted exhibition protocols.</p>
                 </div>
 
-                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
-                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
-                        <i data-lucide="shield-alert" class="w-8 h-8 text-brand-flame"></i>
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-all duration-500 group relative z-10 animate-float-delayed backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-r from-brand-flame via-brand-glow to-brand-crimson opacity-0 group-hover:opacity-100 blur-sm animate-pulse-glow rounded-xl z-[-1] transition-all duration-500 pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-brand-card/70 backdrop-blur-md rounded-xl z-[-1] pointer-events-none"></div>
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg relative">
+                        <div class="absolute inset-0 bg-brand-flame/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <i data-lucide="shield-alert" class="w-8 h-8 text-brand-flame relative z-10"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">The Velvetdex TCG</h3>
-                    <p class="text-gray-400 leading-relaxed">Catch your server members as digitized cards. Build your deck across 6 epic rarity tiers and equip Active Pets to boost your combat stats.</p>
+                    <h3 class="text-xl font-bold mb-4 relative z-10">The Velvetdex TCG</h3>
+                    <p class="text-gray-400 leading-relaxed relative z-10">Catch your server members as digitized cards. Build your deck across 6 epic rarity tiers and equip Active Pets to boost your combat stats.</p>
                 </div>
 
-                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
-                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
-                        <i data-lucide="coins" class="w-8 h-8 text-yellow-500"></i>
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-all duration-500 group relative z-10 animate-float backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-r from-yellow-500 via-brand-glow to-yellow-600 opacity-0 group-hover:opacity-100 blur-sm animate-pulse-glow rounded-xl z-[-1] transition-all duration-500 pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-brand-card/70 backdrop-blur-md rounded-xl z-[-1] pointer-events-none"></div>
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg relative">
+                        <div class="absolute inset-0 bg-yellow-500/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <i data-lucide="coins" class="w-8 h-8 text-yellow-500 relative z-10"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Deep Economy Engine</h3>
-                    <p class="text-gray-400 leading-relaxed">A ruthless Black Market. Buy combat gear from tiered Dungeon Bags, purchase rings for server-wide marriages, and stack compounding daily streaks.</p>
+                    <h3 class="text-xl font-bold mb-4 relative z-10">Deep Economy Engine</h3>
+                    <p class="text-gray-400 leading-relaxed relative z-10">A ruthless Black Market. Buy combat gear from tiered Dungeon Bags, purchase rings for server-wide marriages, and stack compounding daily streaks.</p>
                 </div>
 
-                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
-                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
-                        <i data-lucide="heart" class="w-8 h-8 text-pink-500"></i>
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-all duration-500 group relative z-10 animate-float-delayed backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-r from-pink-500 via-fuchsia-500 to-pink-600 opacity-0 group-hover:opacity-100 blur-sm animate-pulse-glow rounded-xl z-[-1] transition-all duration-500 pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-brand-card/70 backdrop-blur-md rounded-xl z-[-1] pointer-events-none"></div>
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg relative">
+                        <div class="absolute inset-0 bg-pink-500/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <i data-lucide="heart" class="w-8 h-8 text-pink-500 relative z-10"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Mature Social Dynamics</h3>
-                    <p class="text-gray-400 leading-relaxed">Deep roleplay - !ship !flirtyship !matchme !match3some - mechanics. Enter Binding Contracts, choose your Dungeon Class, and track server tension in the Voyeur Gallery.</p>
+                    <h3 class="text-xl font-bold mb-4 relative z-10">Mature Social Dynamics</h3>
+                    <p class="text-gray-400 leading-relaxed relative z-10">Deep roleplay - !ship !flirtyship !matchme !match3some - mechanics. Enter Binding Contracts, choose your Dungeon Class, and track server tension in the Voyeur Gallery.</p>
                 </div>
 
-                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
-                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
-                        <i data-lucide="flame" class="w-8 h-8 text-brand-glow"></i>
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-all duration-500 group relative z-10 animate-float backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-r from-brand-glow via-orange-500 to-brand-flame opacity-0 group-hover:opacity-100 blur-sm animate-pulse-glow rounded-xl z-[-1] transition-all duration-500 pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-brand-card/70 backdrop-blur-md rounded-xl z-[-1] pointer-events-none"></div>
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg relative">
+                        <div class="absolute inset-0 bg-brand-glow/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <i data-lucide="flame" class="w-8 h-8 text-brand-glow relative z-10"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Neural Sync Leveling</h3>
-                    <p class="text-gray-400 leading-relaxed">A highly calibrated XP system that tracks your frequency. Unlock global leaderboards, earn Neural Certificates, and dominate the Counting 2.0 system.</p>
+                    <h3 class="text-xl font-bold mb-4 relative z-10">Neural Sync Leveling</h3>
+                    <p class="text-gray-400 leading-relaxed relative z-10">A highly calibrated XP system that tracks your frequency. Unlock global leaderboards, earn Neural Certificates, and dominate the Counting 2.0 system.</p>
                 </div>
 
-                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
-                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
-                        <i data-lucide="terminal" class="w-8 h-8 text-blue-400"></i>
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-all duration-500 group relative z-10 animate-float-delayed backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 blur-sm animate-pulse-glow rounded-xl z-[-1] transition-all duration-500 pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-brand-card/70 backdrop-blur-md rounded-xl z-[-1] pointer-events-none"></div>
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg relative">
+                        <div class="absolute inset-0 bg-blue-400/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <i data-lucide="terminal" class="w-8 h-8 text-blue-400 relative z-10"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Premium Automation</h3>
-                    <p class="text-gray-400 leading-relaxed">Complete server control. Auto-threading, smart ping limits, advanced SFW/NSFW confession routing, and a secure Black Box audit ledger.</p>
+                    <h3 class="text-xl font-bold mb-4 relative z-10">Premium Automation</h3>
+                    <p class="text-gray-400 leading-relaxed relative z-10">Complete server control. Auto-threading, smart ping limits, advanced SFW/NSFW confession routing, and a secure Black Box audit ledger.</p>
                 </div>
 
-                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
-                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
-                        <i data-lucide="swords" class="w-8 h-8 text-red-500"></i>
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-all duration-500 group relative z-10 animate-float backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-r from-red-500 via-rose-500 to-red-600 opacity-0 group-hover:opacity-100 blur-sm animate-pulse-glow rounded-xl z-[-1] transition-all duration-500 pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-brand-card/70 backdrop-blur-md rounded-xl z-[-1] pointer-events-none"></div>
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg relative">
+                        <div class="absolute inset-0 bg-red-500/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <i data-lucide="swords" class="w-8 h-8 text-red-500 relative z-10"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Deep Arena Combat</h3>
-                    <p class="text-gray-400 leading-relaxed">Challenge rivals to dynamic health-bar-based 1v1 duels, enter the Gauntlet of Shadows for a 4-player cooperative boss fight, or equip your best gear to survive the Echo Rumble Pit simulation.</p>
+                    <h3 class="text-xl font-bold mb-4 relative z-10">Deep Arena Combat</h3>
+                    <p class="text-gray-400 leading-relaxed relative z-10">Challenge rivals to dynamic health-bar-based 1v1 duels, enter the Gauntlet of Shadows for a 4-player cooperative boss fight, or equip your best gear to survive the Echo Rumble Pit simulation.</p>
                 </div>
 
-                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
-                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
-                        <i data-lucide="ship" class="w-8 h-8 text-fuchsia-500"></i>
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-all duration-500 group relative z-10 animate-float-delayed backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-r from-fuchsia-500 via-purple-500 to-fuchsia-600 opacity-0 group-hover:opacity-100 blur-sm animate-pulse-glow rounded-xl z-[-1] transition-all duration-500 pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-brand-card/70 backdrop-blur-md rounded-xl z-[-1] pointer-events-none"></div>
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg relative">
+                        <div class="absolute inset-0 bg-fuchsia-500/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <i data-lucide="ship" class="w-8 h-8 text-fuchsia-500 relative z-10"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Advanced Matchmaking</h3>
-                    <p class="text-gray-400 leading-relaxed">Ship yourself with others for daily compatibility scores, scan for 3-way matches, and explore extensive social dynamics within our intelligent matchmaking framework.</p>
+                    <h3 class="text-xl font-bold mb-4 relative z-10">Advanced Matchmaking</h3>
+                    <p class="text-gray-400 leading-relaxed relative z-10">Ship yourself with others for daily compatibility scores, scan for 3-way matches, and explore extensive social dynamics within our intelligent matchmaking framework.</p>
                 </div>
 
-                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
-                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
-                        <i data-lucide="heart-handshake" class="w-8 h-8 text-fuchsia-500"></i>
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-all duration-500 group relative z-10 animate-float backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-r from-fuchsia-500 via-pink-500 to-fuchsia-600 opacity-0 group-hover:opacity-100 blur-sm animate-pulse-glow rounded-xl z-[-1] transition-all duration-500 pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-brand-card/70 backdrop-blur-md rounded-xl z-[-1] pointer-events-none"></div>
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg relative">
+                        <div class="absolute inset-0 bg-fuchsia-500/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <i data-lucide="heart-handshake" class="w-8 h-8 text-fuchsia-500 relative z-10"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Ask & Consent DM Lobbies</h3>
-                    <p class="text-gray-400 leading-relaxed">Maintain absolute privacy and safety. Use our specialized Ask & Consent DM Lobbies to negotiate interactions, ensure mutual agreement, and track boundary settings for all SFW & NSFW activities.</p>
+                    <h3 class="text-xl font-bold mb-4 relative z-10">Ask & Consent DM Lobbies</h3>
+                    <p class="text-gray-400 leading-relaxed relative z-10">Maintain absolute privacy and safety. Use our specialized Ask & Consent DM Lobbies to negotiate interactions, ensure mutual agreement, and track boundary settings for all SFW & NSFW activities.</p>
                 </div>
 
-                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
-                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
-                        <i data-lucide="gamepad-2" class="w-8 h-8 text-emerald-500"></i>
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-all duration-500 group relative z-10 animate-float-delayed backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 opacity-0 group-hover:opacity-100 blur-sm animate-pulse-glow rounded-xl z-[-1] transition-all duration-500 pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-brand-card/70 backdrop-blur-md rounded-xl z-[-1] pointer-events-none"></div>
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg relative">
+                        <div class="absolute inset-0 bg-emerald-500/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <i data-lucide="gamepad-2" class="w-8 h-8 text-emerald-500 relative z-10"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Quests & Mini-Games</h3>
-                    <p class="text-gray-400 leading-relaxed">Keep the community highly engaged with the Master's Ledger—a continuous 40-task checklist—along with risky Blackout trials, and an instant One-Click Emoji Stealer.</p>
+                    <h3 class="text-xl font-bold mb-4 relative z-10">Quests & Mini-Games</h3>
+                    <p class="text-gray-400 leading-relaxed relative z-10">Keep the community highly engaged with the Master's Ledger—a continuous 40-task checklist—along with risky Blackout trials, and an instant One-Click Emoji Stealer.</p>
                 </div>
 
-                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
-                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
-                        <i data-lucide="hash" class="w-8 h-8 text-orange-500"></i>
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-all duration-500 group relative z-10 animate-float backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 opacity-0 group-hover:opacity-100 blur-sm animate-pulse-glow rounded-xl z-[-1] transition-all duration-500 pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-brand-card/70 backdrop-blur-md rounded-xl z-[-1] pointer-events-none"></div>
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg relative">
+                        <div class="absolute inset-0 bg-orange-500/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <i data-lucide="hash" class="w-8 h-8 text-orange-500 relative z-10"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Counting 2.0</h3>
-                    <p class="text-gray-400 leading-relaxed">A ruthless counting game featuring solo-restrictions, sudden death resets, and weekend 2x multipliers. Track global milestones and publicly shame the server's worst counters with the Disruptor system.</p>
+                    <h3 class="text-xl font-bold mb-4 relative z-10">Counting 2.0</h3>
+                    <p class="text-gray-400 leading-relaxed relative z-10">A ruthless counting game featuring solo-restrictions, sudden death resets, and weekend 2x multipliers. Track global milestones and publicly shame the server's worst counters with the Disruptor system.</p>
                 </div>
 
-                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-colors group">
-                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg">
-                        <i data-lucide="ticket" class="w-8 h-8 text-teal-400"></i>
+                <div class="bg-brand-card border border-white/5 rounded-xl p-8 hover:border-brand-crimson/30 transition-all duration-500 group relative z-10 animate-float-delayed backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-r from-teal-400 via-emerald-400 to-teal-500 opacity-0 group-hover:opacity-100 blur-sm animate-pulse-glow rounded-xl z-[-1] transition-all duration-500 pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-brand-card/70 backdrop-blur-md rounded-xl z-[-1] pointer-events-none"></div>
+                    <div class="bg-brand-dark w-16 h-16 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-brand-crimson/30 shadow-lg relative">
+                        <div class="absolute inset-0 bg-teal-400/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <i data-lucide="ticket" class="w-8 h-8 text-teal-400 relative z-10"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Tickets 2.0 & Autoroles</h3>
-                    <p class="text-gray-400 leading-relaxed">Advanced 2.0 ticket system for seamless support, combined with easy autoroles assigned instantly via reaction.</p>
+                    <h3 class="text-xl font-bold mb-4 relative z-10">Tickets 2.0 & Autoroles</h3>
+                    <p class="text-gray-400 leading-relaxed relative z-10">Advanced 2.0 ticket system for seamless support, combined with easy autoroles assigned instantly via reaction.</p>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <section id="trailer" class="py-24 px-6 bg-brand-dark border-t border-white/5 relative overflow-hidden">
+    <section id="trailer" class="py-24 px-6 bg-brand-dark/30 border-t border-white/5 relative overflow-hidden backdrop-blur-sm">
         <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-flame/10 blur-[150px] rounded-full pointer-events-none"></div>
         <div class="max-w-7xl mx-auto text-center relative z-10">
             <h2 class="text-3xl md:text-5xl font-bold mb-6">See The Engine in Action</h2>
             <p class="text-gray-400 max-w-2xl mx-auto text-lg mb-12">Watch the high-stakes Hangrygames and our Velvetdex TCG unfold in real-time.</p>
             
-            <div class="aspect-video w-full max-w-5xl mx-auto rounded-2xl overflow-hidden border-2 border-brand-crimson/30 shadow-[0_0_40px_rgba(220,38,38,0.2)] bg-brand-card flex items-center justify-center relative">
+            <div class="aspect-video w-full max-w-5xl mx-auto rounded-2xl overflow-hidden border-2 border-brand-crimson/30 shadow-[0_0_40px_rgba(220,38,38,0.2)] bg-brand-card flex items-center justify-center relative backdrop-blur-xl bg-opacity-70 animate-float">
                 <video id="feature-video" class="w-full h-full object-cover" controls>
                     <source src="ticket.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -197,12 +249,12 @@
         </div>
     </section>
 
-    <section id="showcase" class="py-24 px-6 bg-[#0c0c14] border-t border-white/5">
+    <section id="showcase" class="py-24 px-6 bg-[#0c0c14]/40 border-t border-white/5 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto space-y-32">
             
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="flex-1 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-flame/10 border border-brand-flame/20 text-brand-flame text-sm font-bold">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-flame/10 border border-brand-flame/20 text-brand-flame text-sm font-bold backdrop-blur-md">
                         <i data-lucide="shield-alert" class="w-4 h-4"></i> Catch 'Em All
                     </div>
                     <h3 class="text-4xl font-bold">The Velvetdex Card System</h3>
@@ -215,7 +267,8 @@
                         <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Persistent Archive via !velvetdex</li>
                     </ul>
                 </div>
-                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
+                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(220,38,38,0.15)] bg-[#0c0c14]/40 lg:min-w-[55%] animate-float-delayed backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-tr from-brand-crimson/40 via-transparent to-brand-glow/40 opacity-0 group-hover:opacity-100 blur-md animate-pulse-glow z-[-1] transition-all duration-700 pointer-events-none"></div>
                     <img id="dex-img-1" src="memberscatch.jpg" alt="Velvetdex Interface" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
                     <img id="dex-img-2" src="memberscatch2.jpg" alt="Velvetdex Secondary Interface" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     
@@ -230,7 +283,7 @@
 
             <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
                 <div class="flex-1 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-crimson/10 border border-brand-crimson/20 text-brand-crimson text-sm font-bold">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-crimson/10 border border-brand-crimson/20 text-brand-crimson text-sm font-bold backdrop-blur-md">
                         <i data-lucide="swords" class="w-4 h-4"></i> Battle Royale
                     </div>
                     <h3 class="text-4xl font-bold">The Echo Hangrygames</h3>
@@ -243,7 +296,8 @@
                         <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Winner's Decree Mechanics</li>
                     </ul>
                 </div>
-                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
+                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(220,38,38,0.15)] bg-[#0c0c14]/40 lg:min-w-[55%] animate-float backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-tr from-brand-crimson/40 via-transparent to-brand-glow/40 opacity-0 group-hover:opacity-100 blur-md animate-pulse-glow z-[-1] transition-all duration-700 pointer-events-none"></div>
                     <img id="hg-img-1" src="echogames.jpg" alt="Hangrygames Action 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
                     <img id="hg-img-2" src="echogames2.jpg" alt="Hangrygames Action 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     <img id="hg-img-3" src="echogames3.jpg" alt="Hangrygames Action 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
@@ -260,7 +314,7 @@
 
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="flex-1 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-500 text-sm font-bold">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-500 text-sm font-bold backdrop-blur-md">
                         <i data-lucide="coins" class="w-4 h-4"></i> Wealth & Power
                     </div>
                     <h3 class="text-4xl font-bold">The Black Market</h3>
@@ -268,25 +322,26 @@
                         Flames are your lifeblood. Harvest them daily, buy loot boxes for equipment, and engage in high-stakes social contracts. Will you buy a ring to bind a soul, or invest in gear to survive the Rumble Pit?
                     </p>
                     <div class="grid grid-cols-2 gap-4 mt-6">
-                        <div class="bg-brand-card p-4 rounded-lg border border-white/5">
+                        <div class="bg-brand-card p-4 rounded-lg border border-white/5 backdrop-blur-xl bg-opacity-70">
                             <h4 class="font-bold text-white mb-1">Buy Gear</h4>
                             <p class="text-sm text-gray-500">Tiered Dungeon Bags</p>
                         </div>
-                        <div class="bg-brand-card p-4 rounded-lg border border-white/5">
+                        <div class="bg-brand-card p-4 rounded-lg border border-white/5 backdrop-blur-xl bg-opacity-70">
                             <h4 class="font-bold text-white mb-1">Buy Rings</h4>
                             <p class="text-sm text-gray-500">Server Marriages</p>
                         </div>
-                        <div class="bg-brand-card p-4 rounded-lg border border-white/5">
+                        <div class="bg-brand-card p-4 rounded-lg border border-white/5 backdrop-blur-xl bg-opacity-70">
                             <h4 class="font-bold text-white mb-1">Loot & Scrap</h4>
                             <p class="text-sm text-gray-500">Liquidate Assets</p>
                         </div>
-                        <div class="bg-brand-card p-4 rounded-lg border border-white/5">
+                        <div class="bg-brand-card p-4 rounded-lg border border-white/5 backdrop-blur-xl bg-opacity-70">
                             <h4 class="font-bold text-white mb-1">Contracts</h4>
                             <p class="text-sm text-gray-500">Sub/Dom Taxes</p>
                         </div>
                     </div>
                 </div>
-                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
+                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(220,38,38,0.15)] bg-[#0c0c14]/40 lg:min-w-[55%] animate-float-delayed backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-tr from-brand-crimson/40 via-transparent to-brand-glow/40 opacity-0 group-hover:opacity-100 blur-md animate-pulse-glow z-[-1] transition-all duration-700 pointer-events-none"></div>
                     <img id="shop-img-1" src="shop.jpg" alt="Economy Shop Interface 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
                     <img id="shop-img-2" src="shop2.jpg" alt="Economy Shop Interface 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     
@@ -301,7 +356,7 @@
 
             <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
                 <div class="flex-1 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-500 text-sm font-bold">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-500 text-sm font-bold backdrop-blur-md">
                         <i data-lucide="heart" class="w-4 h-4"></i> Deep Connection
                     </div>
                     <h3 class="text-4xl font-bold">Mature Social Dynamics</h3>
@@ -314,7 +369,8 @@
                         <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Voyeur Gallery Tension Tracking</li>
                     </ul>
                 </div>
-                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
+                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(220,38,38,0.15)] bg-[#0c0c14]/40 lg:min-w-[55%] animate-float backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-tr from-brand-crimson/40 via-transparent to-brand-glow/40 opacity-0 group-hover:opacity-100 blur-md animate-pulse-glow z-[-1] transition-all duration-700 pointer-events-none"></div>
                     <img id="social-img-1" src="classes.jpg" alt="Social Dynamics 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
                     <img id="social-img-2" src="classes2.jpg" alt="Social Dynamics 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     
@@ -329,7 +385,7 @@
 
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="flex-1 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-glow/10 border border-brand-glow/20 text-brand-glow text-sm font-bold">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-glow/10 border border-brand-glow/20 text-brand-glow text-sm font-bold backdrop-blur-md">
                         <i data-lucide="flame" class="w-4 h-4"></i> Global Dominance
                     </div>
                     <h3 class="text-4xl font-bold">Neural Sync Leveling</h3>
@@ -342,7 +398,8 @@
                         <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Global Leaderboards</li>
                     </ul>
                 </div>
-                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
+                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(220,38,38,0.15)] bg-[#0c0c14]/40 lg:min-w-[55%] animate-float-delayed backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-tr from-brand-crimson/40 via-transparent to-brand-glow/40 opacity-0 group-hover:opacity-100 blur-md animate-pulse-glow z-[-1] transition-all duration-700 pointer-events-none"></div>
                     <img id="level-img-1" src="level.jpg" alt="Leveling System 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
                     <img id="level-img-2" src="level2.jpg" alt="Leveling System 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     <img id="level-img-3" src="level3.jpg" alt="Leveling System 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
@@ -359,7 +416,7 @@
 
             <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
                 <div class="flex-1 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-400/10 border border-blue-400/20 text-blue-400 text-sm font-bold">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-400/10 border border-blue-400/20 text-blue-400 text-sm font-bold backdrop-blur-md">
                         <i data-lucide="terminal" class="w-4 h-4"></i> Absolute Control
                     </div>
                     <h3 class="text-4xl font-bold">Premium Automation</h3>
@@ -372,7 +429,8 @@
                         <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Secure Black Box Audit Ledger</li>
                     </ul>
                 </div>
-                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
+                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(220,38,38,0.15)] bg-[#0c0c14]/40 lg:min-w-[55%] animate-float backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-tr from-brand-crimson/40 via-transparent to-brand-glow/40 opacity-0 group-hover:opacity-100 blur-md animate-pulse-glow z-[-1] transition-all duration-700 pointer-events-none"></div>
                     <img id="auto-img-1" src="pre.jpg" alt="Automation 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
                     <img id="auto-img-2" src="pre2.jpg" alt="Automation 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     <img id="auto-img-3" src="pre3.jpg" alt="Automation 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
@@ -390,7 +448,7 @@
 
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="flex-1 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-sm font-bold">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-sm font-bold backdrop-blur-md">
                         <i data-lucide="swords" class="w-4 h-4"></i> Blood & Glory
                     </div>
                     <h3 class="text-4xl font-bold">Deep Arena Combat</h3>
@@ -403,7 +461,8 @@
                         <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> The Echo Rumble Pit Stat Simulation</li>
                     </ul>
                 </div>
-                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
+                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(220,38,38,0.15)] bg-[#0c0c14]/40 lg:min-w-[55%] animate-float-delayed backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-tr from-brand-crimson/40 via-transparent to-brand-glow/40 opacity-0 group-hover:opacity-100 blur-md animate-pulse-glow z-[-1] transition-all duration-700 pointer-events-none"></div>
                     <img id="fight-img-1" src="fight.jpg" alt="Combat Interface 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
                     <img id="fight-img-2" src="fight1.jpg" alt="Combat Interface 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     <img id="fight-img-3" src="fight2.jpg" alt="Combat Interface 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
@@ -422,7 +481,7 @@
 
             <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
                 <div class="flex-1 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20 text-fuchsia-500 text-sm font-bold">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20 text-fuchsia-500 text-sm font-bold backdrop-blur-md">
                         <i data-lucide="ship" class="w-4 h-4"></i> Advanced Matchmaking
                     </div>
                     <h3 class="text-4xl font-bold">Advanced Matchmaking</h3>
@@ -435,7 +494,8 @@
                         <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Persistent Compatibility Tracking</li>
                     </ul>
                 </div>
-                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
+                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(220,38,38,0.15)] bg-[#0c0c14]/40 lg:min-w-[55%] animate-float backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-tr from-brand-crimson/40 via-transparent to-brand-glow/40 opacity-0 group-hover:opacity-100 blur-md animate-pulse-glow z-[-1] transition-all duration-700 pointer-events-none"></div>
                     <img id="ship-img-1" src="ship.jpg" alt="Matchmaking Interface 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
                     <img id="ship-img-2" src="ship2.jpg" alt="Matchmaking Interface 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     <img id="ship-img-3" src="ship3.jpg" alt="Matchmaking Interface 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
@@ -453,7 +513,7 @@
 
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="flex-1 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20 text-fuchsia-500 text-sm font-bold">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20 text-fuchsia-500 text-sm font-bold backdrop-blur-md">
                         <i data-lucide="heart-handshake" class="w-4 h-4"></i> Ask & Consent DM
                     </div>
                     <h3 class="text-4xl font-bold">Ask & Consent DM Lobbies</h3>
@@ -466,7 +526,8 @@
                         <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Automated Boundary Tracking</li>
                     </ul>
                 </div>
-                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
+                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(220,38,38,0.15)] bg-[#0c0c14]/40 lg:min-w-[55%] animate-float-delayed backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-tr from-brand-crimson/40 via-transparent to-brand-glow/40 opacity-0 group-hover:opacity-100 blur-md animate-pulse-glow z-[-1] transition-all duration-700 pointer-events-none"></div>
                     <img id="ask-img-1" src="ask.jpg" alt="Ask Interface 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
                     <img id="ask-img-2" src="ask2.jpg" alt="Ask Interface 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     <img id="ask-img-3" src="ask3.jpg" alt="Ask Interface 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
@@ -482,7 +543,7 @@
 
             <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
                 <div class="flex-1 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-sm font-bold">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-sm font-bold backdrop-blur-md">
                         <i data-lucide="gamepad-2" class="w-4 h-4"></i> Endless Activities
                     </div>
                     <h3 class="text-4xl font-bold">Quests & Mini-Games</h3>
@@ -495,7 +556,8 @@
                         <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> One-Click Custom Emoji Stealing</li>
                     </ul>
                 </div>
-                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
+                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(220,38,38,0.15)] bg-[#0c0c14]/40 lg:min-w-[55%] animate-float backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-tr from-brand-crimson/40 via-transparent to-brand-glow/40 opacity-0 group-hover:opacity-100 blur-md animate-pulse-glow z-[-1] transition-all duration-700 pointer-events-none"></div>
                     <img id="quest-img-1" src="emoji.jpg" alt="Quests Interface 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
                     <img id="quest-img-2" src="quests.jpg" alt="Quests Interface 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     <img id="quest-img-3" src="quests2.jpg" alt="Quests Interface 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
@@ -511,7 +573,7 @@
 
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="flex-1 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 text-sm font-bold">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 text-sm font-bold backdrop-blur-md">
                         <i data-lucide="hash" class="w-4 h-4"></i> The Ultimate Challenge
                     </div>
                     <h3 class="text-4xl font-bold">Counting 2.0</h3>
@@ -524,7 +586,8 @@
                         <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> "Disruptor" Public Shaming</li>
                     </ul>
                 </div>
-                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
+                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(220,38,38,0.15)] bg-[#0c0c14]/40 lg:min-w-[55%] animate-float-delayed backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-tr from-brand-crimson/40 via-transparent to-brand-glow/40 opacity-0 group-hover:opacity-100 blur-md animate-pulse-glow z-[-1] transition-all duration-700 pointer-events-none"></div>
                     <img id="counting-img-1" src="count.jpg" alt="Counting Interface 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
                     <img id="counting-img-2" src="count2.jpg" alt="Counting Interface 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     <img id="counting-img-3" src="count3.jpg" alt="Counting Interface 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
@@ -540,7 +603,7 @@
 
             <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
                 <div class="flex-1 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-500 text-sm font-bold">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-500 text-sm font-bold backdrop-blur-md">
                         <i data-lucide="ticket" class="w-4 h-4"></i> Tickets 2.0
                     </div>
                     <h3 class="text-4xl font-bold">Tickets 2.0 & Autoroles</h3>
@@ -553,7 +616,8 @@
                         <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Easy Reaction Setup</li>
                     </ul>
                 </div>
-                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
+                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(220,38,38,0.15)] bg-[#0c0c14]/40 lg:min-w-[55%] animate-float backdrop-blur-2xl bg-opacity-60">
+                    <div class="absolute -inset-[2px] bg-gradient-to-tr from-brand-crimson/40 via-transparent to-brand-glow/40 opacity-0 group-hover:opacity-100 blur-md animate-pulse-glow z-[-1] transition-all duration-700 pointer-events-none"></div>
                     <img id="ticket-img-1" src="https://placehold.co/800x600/13131f/14b8a6?text=Upload+Ticket+Image" alt="Ticket System 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
                     <img id="ticket-img-2" src="ticketdisplay.jpg" alt="Ticket System 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 z-0">
                     
@@ -569,7 +633,7 @@
         </div>
     </section>
 
-    <footer class="border-t border-white/5 bg-brand-dark py-12 text-center text-gray-500">
+    <footer class="border-t border-white/5 bg-brand-dark py-12 text-center text-gray-500 relative z-10 backdrop-blur-md">
         <p>© 2026 Echo Bot Development. All rights reserved.</p>
     </footer>
 
@@ -795,4 +859,65 @@
           document.getElementById('ticket-img-' + currentTicketIndex).classList.replace('opacity-0', 'opacity-100');
           document.getElementById('ticket-img-' + currentTicketIndex).classList.replace('z-0', 'z-10');
       }
+
+      // Custom Particle Background Script
+      const canvas = document.getElementById('particle-canvas');
+      const ctx = canvas.getContext('2d');
+      let particlesArray;
+
+      function initCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+      }
+
+      class Particle {
+          constructor() {
+              this.x = Math.random() * canvas.width;
+              this.y = Math.random() * canvas.height;
+              this.size = Math.random() * 2.5 + 0.5;
+              this.speedX = (Math.random() * 0.4) - 0.2;
+              this.speedY = (Math.random() * 0.4) - 0.2;
+              this.opacity = Math.random() * 0.5 + 0.1;
+              // Mix of crimson and ember glow
+              this.color = Math.random() > 0.5 ? 'rgba(220, 38, 38,' + this.opacity + ')' : 'rgba(249, 115, 22,' + this.opacity + ')';
+          }
+          update() {
+              this.x += this.speedX;
+              this.y += this.speedY;
+              if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+              if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+          }
+          draw() {
+              ctx.fillStyle = this.color;
+              ctx.beginPath();
+              ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+              ctx.fill();
+          }
+      }
+
+      function initParticles() {
+          particlesArray = [];
+          let numberOfParticles = (canvas.height * canvas.width) / 15000;
+          for (let i = 0; i < numberOfParticles; i++) {
+              particlesArray.push(new Particle());
+          }
+      }
+
+      function animateParticles() {
+          requestAnimationFrame(animateParticles);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          for (let i = 0; i < particlesArray.length; i++) {
+              particlesArray[i].update();
+              particlesArray[i].draw();
+          }
+      }
+
+      window.addEventListener('resize', () => {
+          initCanvas();
+          initParticles();
+      });
+
+      initCanvas();
+      initParticles();
+      animateParticles();
     </script></body></html>
