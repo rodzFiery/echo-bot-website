@@ -38,7 +38,9 @@
       }
     </script>
 
-    <script src="https://unpkg.com/lucide@latest"></script></head><body class="bg-brand-dark text-white font-sans selection:bg-brand-crimson selection:text-white relative z-0">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webgl-fluid"></script></head><body class="bg-brand-dark text-white font-sans selection:bg-brand-crimson selection:text-white relative z-0">
+    <canvas id="fluid-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-[-2]" style="filter: sepia(100%) hue-rotate(320deg) saturate(500%) contrast(150%) brightness(1.2); opacity: 0.8;"></canvas>
     <canvas id="particle-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-[-1] opacity-70"></canvas>
 
     <nav class="border-b border-white/5 bg-brand-dark/80 backdrop-blur-md fixed w-full z-50 top-0">
@@ -920,4 +922,62 @@
       initCanvas();
       initParticles();
       animateParticles();
+
+      // Dragon's Breath Fluid Simulation
+      window.addEventListener('load', function() {
+          const fluidCanvas = document.getElementById('fluid-canvas');
+          WebGLFluid(fluidCanvas, {
+              IMMEDIATE: true,
+              TRIGGER: 'hover',
+              SIM_RESOLUTION: 128,
+              DYE_RESOLUTION: 1024,
+              CAPTURE_RESOLUTION: 512,
+              DENSITY_DISSIPATION: 0.95,
+              VELOCITY_DISSIPATION: 0.98,
+              PRESSURE: 0.8,
+              PRESSURE_ITERATIONS: 20,
+              CURL: 35,
+              SPLAT_RADIUS: 0.4,
+              SPLAT_FORCE: 6000,
+              SHADING: true,
+              COLORFUL: true,
+              COLOR_UPDATE_SPEED: 10,
+              PAUSED: false,
+              BACK_COLOR: { r: 10, g: 10, b: 15 },
+              TRANSPARENT: true,
+              BLOOM: true,
+              BLOOM_ITERATIONS: 8,
+              BLOOM_RESOLUTION: 256,
+              BLOOM_INTENSITY: 0.8,
+              BLOOM_THRESHOLD: 0.6,
+              BLOOM_SOFT_KNEE: 0.7,
+              SUNRAYS: true,
+              SUNRAYS_RESOLUTION: 196,
+              SUNRAYS_WEIGHT: 1.0,
+          });
+
+          // Forward mouse events to the pointer-events-none canvas
+          window.addEventListener('mousemove', (e) => {
+              const event = new MouseEvent('mousemove', {
+                  clientX: e.clientX,
+                  clientY: e.clientY,
+                  bubbles: true,
+                  cancelable: true
+              });
+              fluidCanvas.dispatchEvent(event);
+          });
+          
+          window.addEventListener('touchmove', (e) => {
+              if (e.touches.length > 0) {
+                  const touch = e.touches[0];
+                  const event = new MouseEvent('mousemove', {
+                      clientX: touch.clientX,
+                      clientY: touch.clientY,
+                      bubbles: true,
+                      cancelable: true
+                  });
+                  fluidCanvas.dispatchEvent(event);
+              }
+          });
+      });
     </script></body></html>
