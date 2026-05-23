@@ -182,8 +182,17 @@
             <h2 class="text-3xl md:text-5xl font-bold mb-6">See The Engine in Action</h2>
             <p class="text-gray-400 max-w-2xl mx-auto text-lg mb-12">Watch the high-stakes Hangrygames and our Velvetdex TCG unfold in real-time.</p>
             
-            <div class="aspect-video w-full max-w-5xl mx-auto rounded-2xl overflow-hidden border-2 border-brand-crimson/30 shadow-[0_0_40px_rgba(220,38,38,0.2)] bg-brand-card flex items-center justify-center">
-                <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Echo Bot Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="aspect-video w-full max-w-5xl mx-auto rounded-2xl overflow-hidden border-2 border-brand-crimson/30 shadow-[0_0_40px_rgba(220,38,38,0.2)] bg-brand-card flex items-center justify-center relative">
+                <video id="feature-video" class="w-full h-full object-cover" controls>
+                    <source src="ticket.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <button onclick="changeVideo(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all border border-white/10">
+                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                </button>
+                <button onclick="changeVideo(1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all border border-white/10">
+                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -529,6 +538,33 @@
                 </div>
             </div>
 
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
+                <div class="flex-1 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-500 text-sm font-bold">
+                        <i data-lucide="ticket" class="w-4 h-4"></i> Tickets 2.0
+                    </div>
+                    <h3 class="text-4xl font-bold">Tickets 2.0 & Autoroles</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        Advanced 2.0 ticket system for seamless support, combined with easy autoroles assigned instantly via reaction.
+                    </p>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Seamless Support Tickets</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Instant Autoroles</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-brand-crimson"></i> Easy Reaction Setup</li>
+                    </ul>
+                </div>
+                <div class="flex-1 w-full relative group aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c14] lg:min-w-[55%]">
+                    <img id="ticket-img-1" src="https://placehold.co/800x600/13131f/14b8a6?text=Upload+Ticket+Image" alt="Ticket System" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 z-10">
+                    
+                    <button onclick="changeTicketImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
+                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+                    <button onclick="changeTicketImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-brand-dark/80 hover:bg-brand-crimson text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100 border border-white/10">
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -538,6 +574,16 @@
 
     <script>
       lucide.createIcons();
+
+      let videoSource = ['ticket.mp4', 'placeholder2.mp4', 'placeholder3.mp4'];
+      let currentVideoIndex = 0;
+      function changeVideo(step) {
+          const video = document.getElementById('feature-video');
+          currentVideoIndex = (currentVideoIndex + step + videoSource.length) % videoSource.length;
+          video.src = videoSource[currentVideoIndex];
+          video.load();
+          video.play();
+      }
 
       let dexShowingFirst = true;
       function toggleDexImage() {
@@ -720,44 +766,6 @@
           document.getElementById('quest-img-' + currentQuestIndex).classList.replace('z-0', 'z-10');
       }
 
-      let miniShowingFirst = true;
-      function toggleMiniImage() {
-          const img1 = document.getElementById('mini-img-1');
-          const img2 = document.getElementById('mini-img-2');
-          
-          if (miniShowingFirst) {
-              img1.classList.replace('opacity-100', 'opacity-0');
-              img1.classList.replace('z-10', 'z-0');
-              img2.classList.replace('opacity-0', 'opacity-100');
-              img2.classList.replace('z-0', 'z-10');
-          } else {
-              img1.classList.replace('opacity-0', 'opacity-100');
-              img1.classList.replace('z-0', 'z-10');
-              img2.classList.replace('opacity-100', 'opacity-0');
-              img2.classList.replace('z-10', 'z-0');
-          }
-          miniShowingFirst = !miniShowingFirst;
-      }
-
-      let toolsShowingFirst = true;
-      function toggleToolsImage() {
-          const img1 = document.getElementById('tools-img-1');
-          const img2 = document.getElementById('tools-img-2');
-          
-          if (toolsShowingFirst) {
-              img1.classList.replace('opacity-100', 'opacity-0');
-              img1.classList.replace('z-10', 'z-0');
-              img2.classList.replace('opacity-0', 'opacity-100');
-              img2.classList.replace('z-0', 'z-10');
-          } else {
-              img1.classList.replace('opacity-0', 'opacity-100');
-              img1.classList.replace('z-0', 'z-10');
-              img2.classList.replace('opacity-100', 'opacity-0');
-              img2.classList.replace('z-10', 'z-0');
-          }
-          toolsShowingFirst = !toolsShowingFirst;
-      }
-
       let currentCountingIndex = 1;
       const totalCountingImages = 3;
 
@@ -771,5 +779,11 @@
           
           document.getElementById('counting-img-' + currentCountingIndex).classList.replace('opacity-0', 'opacity-100');
           document.getElementById('counting-img-' + currentCountingIndex).classList.replace('z-0', 'z-10');
+      }
+
+      let currentTicketIndex = 1;
+      const totalTicketImages = 1;
+      function changeTicketImage(step) {
+          // Placeholder function for future images
       }
     </script></body></html>
